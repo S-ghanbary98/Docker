@@ -42,3 +42,32 @@
 - Monolithic architecture does have its own benefits. For example, it's easier to test, simpler to develop, easy to deploy.
 - monolithic architecture also has a range of drawbacks which include, being to complex to understand if application is big, Bad start up time, size can slow application, continuous deployment is difficult. Just to name a few.
 - For small application monolithic architecture is ideal, for larger more complex application Microservices Architecture takes the win.
+
+
+### Docker Documentation and Command
+
+- We can run the documentation and see it on the `localhost:4000`
+- We do this by first running the command `docker pull -d -p 4000:4000 docs/docker.github.io`.
+
+```
+    -d          ===>         Detach so we get the command line while downloading
+    -p          ===>         Port Number to run on
+    
+    docker run -d -p <PORT> <SERVICE>     =====>    run a container
+    docker ps -a                          =====>    See all running containers
+    docker stop <ID>                      =====>    Stop container with id <ID>
+    docker rm <ID> -f                     =====>    Force Destroy container with id <ID>
+    
+    
+```
+
+
+
+- We can see it running by typing the command `docker ps` this will give the container id and all running containers.
+
+### Running Nginx
+
+- We can also run nginx and see it displayed on local host via the `docker run` command.
+- We run `docker run -d -p 80:80 nginx`.
+- We can now se nginx displayed on the web at `localhost:80`.
+
