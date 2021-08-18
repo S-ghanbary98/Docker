@@ -50,13 +50,17 @@
 - We do this by first running the command `docker pull -d -p 4000:4000 docs/docker.github.io`.
 
 ```
+    ##### Additionals
     -d          ===>         Detach so we get the command line while downloading
     -p          ===>         Port Number to run on
     
+    
+    ### COMMANDS
     docker run -d -p <PORT> <SERVICE>     =====>    run a container
     docker ps -a                          =====>    See all running containers
     docker stop <ID>                      =====>    Stop container with id <ID>
     docker rm <ID> -f                     =====>    Force Destroy container with id <ID>
+    docker exec -it <ID> sh               =====>    Enter container
     
     
 ```
