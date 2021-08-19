@@ -109,3 +109,14 @@ CMD ["nginx", "-g", "daemon off;"]
 - You can see all the images via `docker images`.
 - Now you can run the container via `docker run -d -p 50:80 sherv1360/nginx`.
 - The static website is now visible on localhost:50.
+
+
+
+### Creating Volumes 
+
+- Volumes allow for real-time syncing between the localhost and the container.
+- For nginx this can be done via the command `docker run -d -v <PWD OF INDEX.HTML>:/usr/share/nginx/html -p 5000:80 sherv1360/nginx`.
+
+```python
+docker run -d -v /Users/shervin888/dock/app:/usr/share/nginx/html -p 5000:80 sherv1360/nginx
+```
