@@ -61,7 +61,9 @@
     docker stop <ID>                      =====>    Stop container with id <ID>
     docker rm <ID> -f                     =====>    Force Destroy container with id <ID>
     docker exec -it <ID> sh               =====>    Enter container
-    
+    docker push <IMAGEID NAME>            =====>    Push image to docker hub repository
+    docker rmi <IMAGEID?                  =====>    Delete Image
+    +
     
 ```
 
@@ -75,3 +77,35 @@
 - We run `docker run -d -p 80:80 nginx`.
 - We can now se nginx displayed on the web at `localhost:80`.
 
+### Displaying Static HTML Using NGINX
+
+- This task involves creating a static html file called 'index.html'.
+- We will use this to create our own image and run a docker container.
+- If successful we should see the static web pages displayed on the localhost.
+
+##### Creating Docker Image
+
+- Firstly we have to create a docker file, so we can build the image.
+- We will build the image to automate the tasks.
+ 
+
+```
+#### DOCKERFILE
+
+FROM nginx
+
+COPY app /usr/share/nginx/html          ### Copy files from app folder into container
+ 
+
+LABEL MAINTANER=shervin
+
+# Adding the port
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
+```
+
+- Build the image via `docker build -t sherv1360/nginx`.
+- You can see all the images via `docker images`.
+- Now you can run the container via `docker run -d -p 50:80 sherv1360/nginx`.
+- The static website is now visible on localhost:50.
