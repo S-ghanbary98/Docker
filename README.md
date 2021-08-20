@@ -102,6 +102,10 @@ LABEL MAINTANER=shervin
 # Adding the port
 EXPOSE 80
 
+# RUN command used while your building an image
+# CMD for what we want to run inside the container
+
+
 CMD ["nginx", "-g", "daemon off;"]
 ```
 
@@ -115,8 +119,56 @@ CMD ["nginx", "-g", "daemon off;"]
 ### Creating Volumes 
 
 - Volumes allow for real-time syncing between the localhost and the container.
-- For nginx this can be done via the command `docker run -d -v <PWD OF INDEX.HTML>:/usr/share/nginx/html -p 5000:80 sherv1360/nginx`.
+- For nginx this can be done via the command `docker run -d -v <PWD OF INDEX.HTML>:/usr/share/nginx/html -p 5000:80 <IMAGE>`.
 
 ```python
-docker run -d -v /Users/shervin888/dock/app:/usr/share/nginx/html -p 5000:80 sherv1360/nginx
+docker run -d -v /Users/shervin888/dock/app:/usr/share/nginx/html -p 5000:80 <sherv1360/nginx>
 ```
+
+
+### Running App.js and MongoDB Using Docker
+
+- We are now going to run a nodeJS app and mongoDb using docker.
+- This requires us to create two containers. 
+- It also requires us to use a Docker-compose.yml file to provision containers.
+- The docker file is first created and can be seen below.
+
+```
+FROM node AS app
+
+WORKDIR /usr/src/app
+
+COPY package*.json ./
+
+RUN npm install -g npm@7.20.6
+
+COPY . .
+
+EXPOSE 3000
+
+CMD ["node", "seeds/seed.js"]
+
+FROM node:alpine
+
+
+WORKDIR /usr/src/app
+
+COPY package*.json ./
+
+RUN npm install -g npm@7.20.6
+
+COPY --from=app /usr/src/app /usr/src/app
+
+EXPOSE 3000
+
+
+CMD ["node", "app.js"]
+
+```
+- We can now build the image using the command `docker build -t sherv1360/node_App`
+- we then have to type the command `docker compose up -d`. This will allow us to run multi-container docker applications.
+- We can now see the app running on port 9000.
+- The three web pages can be seen via `localhost:9000`, `localhost:9000/fibonacci/3`, and `localhost:9000/posts`.
+
+
+
