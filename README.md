@@ -166,6 +166,33 @@ CMD ["node", "app.js"]
 
 ```
 - We can now build the image using the command `docker build -t sherv1360/node_App`
+- Next we create our docker-compose.yml file which can be seen below.
+
+```python
+version: '3.8'
+
+services:
+  # start the db image and map to port 27017
+  db:
+    image: mongo
+    restart: always
+    ports: [27017:27017]
+  web:
+    # start up the web app image and map to localhost
+    build: .
+    restart: always
+    ports: [9000:3000]
+    # set variable for db port
+    environment:
+      - DB_HOST=mongodb://db:27017/posts
+    depends_on:
+      - db
+
+```
+
+
+
+
 - we then have to type the command `docker compose up -d`. This will allow us to run multi-container docker applications.
 - We can now see the app running on port 9000.
 - The three web pages can be seen via `localhost:9000`, `localhost:9000/fibonacci/3`, and `localhost:9000/posts`.
