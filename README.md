@@ -190,12 +190,11 @@ services:
 
 ```
 
-
-
-
 - we then have to type the command `docker compose up -d`. This will allow us to run multi-container docker applications.
 - We can now see the app running on port 9000.
 - The three web pages can be seen via `localhost:9000`, `localhost:9000/fibonacci/3`, and `localhost:9000/posts`.
 
+
+#### Making the Data Persistent Using Volumes.
 
 
