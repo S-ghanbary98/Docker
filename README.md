@@ -38,6 +38,8 @@
 
 #### Microservices Architecture vs monolithic architecture
 
+![](img.jpg)
+
 - While a monolithic application is a single unified unit, a microservices' architecture breaks it down into a collection of smaller independent units.
 - Monolithic architecture does have its own benefits. For example, it's easier to test, simpler to develop, easy to deploy.
 - monolithic architecture also has a range of drawbacks which include, being to complex to understand if application is big, Bad start up time, size can slow application, continuous deployment is difficult. Just to name a few.
